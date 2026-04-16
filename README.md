@@ -3,7 +3,7 @@ Simple app that lets you have a verbal conversation with Ollama AI Models.
 Original Babagaboosh Code Written by [DougDoug.](https://github.com/DougDougGithub/Babagaboosh) 
 
 ## P.S. if the guide sounds a little too similar to the Original Guide, That's because the Open Source modules that replace ChatGPT-4o, Microsoft Azure, and Elevenlabs do the same exact goddamn thing! Don't kill me please :3
-e
+
 ## SETUP:
 1) This was written in Python 3.13.0.  install it here: https://www.python.org/downloads/release/python-3130/
 
