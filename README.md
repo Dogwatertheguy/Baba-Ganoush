@@ -29,6 +29,6 @@ then, install torch using this command instead
 
 2) Once it's running, press F4 to start the conversation, and Whisperd will listen to your microphone and transcribe it into text.
 
-3) Once you're done talking, press P. Then the code will send all of the recorded text to the Ai. Note that you should wait a second or two after you're done talking before pressing P so that Whisper has enough time to process all of the audio.
+3) Once you're done talking, wait, and it will stop recording automatically. Then the code will send all of the recorded text to the Ai. Note that you should wait a second or two after you're done talking before pressing P so that Whisper has enough time to process all of the audio.
 
 4) Wait a few seconds for Ollama to generate a response and for PiperTTS to turn that response into audio. Once it's done playing the response, you can press F4 to start the loop again and continue the conversation.
