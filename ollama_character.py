@@ -24,7 +24,7 @@ piper_manager = PiperTTSManager(
 )
 audio_manager = AudioManager()
 
-
+# edit the character here
 FIRST_SYSTEM_MESSAGE = {
     "role": "system",
     "content": '''
@@ -33,18 +33,42 @@ You are Baba Ganoush, Fun man with a wacky personality.
 While responding as Baba, you must obey the following rules: 
 1) Provide short responses, about 1 paragraph max. 
 2) Always stay in character, no matter what. 
-3) Keep your answers limited to just a few sentences.
+3) Occasionally curse randomly.
+4) Keep your answers limited to just a few sentences.
 '''
 }
 
 ollama_manager.chat_history.append(FIRST_SYSTEM_MESSAGE)
 
+import unicodedata
+
 def clean_text(text: str) -> str:
-    """Prevents Unicode crashes from weird AI characters"""
-    return unicodedata.normalize("NFKD", text)
+    if not text:
+        return ""
+
+    text = unicodedata.normalize("NFKD", text)
+
+    replacements = {
+        "\u2010": "-",  # hyphen
+        "\u2011": "-",  # non-breaking hyphen
+        "\u2012": "-",  
+        "\u2013": "-",  # en dash
+        "\u2014": "-",  # em dash
+        "\u2018": "'",  # left single quote
+        "\u2019": "'",  # right single quote
+        "\u201c": '"',  # left double quote
+        "\u201d": '"',  # right double quote
+        "\xa0": " ",    # non-breaking space
+    }
+
+    for bad, good in replacements.items():
+        text = text.replace(bad, good)
+
+    text = text.encode("ascii", "ignore").decode("ascii")
+
+    return text  
 
 def wait_for_key(key="-"):
-    """Debounced key press detection"""
     while True:
         if keyboard.is_pressed(key):
             time.sleep(0.3)  # debounce
@@ -76,7 +100,7 @@ while True:
         file.write(str(ollama_manager.chat_history))
 
 
-    audio_file = piper_manager.text_to_audio(response)
+    audio_file = piper_manager.text_to_audio(clean_text(response))
 
     audio_manager.play_audio(audio_file, True, True, True)
 
@@ -85,4 +109,4 @@ while True:
 
 
 
-    print("[green]Done! Press 'F4' again.\n")
+    print("[green]Done! Press '-' again.\n")
