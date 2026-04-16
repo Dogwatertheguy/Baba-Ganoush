@@ -85,4 +85,4 @@ while True:
 
 
 
-    print("[green]Done! Press '-' again.\n")
+    print("[green]Done! Press 'F4' again.\n")
