@@ -7,7 +7,7 @@ Original Babagaboosh Code Written by [DougDoug.](https://github.com/DougDougGith
 ## SETUP:
 1) This was written in Python 3.13.0.  install it here: https://www.python.org/downloads/release/python-3130/
 
-2)  Create the environment with either generate-enviornment.sh(Linux) or generate-enviornment.bat(Windows), activate it using `.venv\Scripts\activate`(Windows) or `source .venv/bin/activate`(Linux) and run `pip install -r requirements.txt` to install all modules.
+2)  Create the environment with either `generate-environment.sh`(Linux) or `generate-enviroment.bat`(Windows), activate it using `.venv\Scripts\activate`(Windows) or `source .venv/bin/activate`(Linux) and run `pip install -r requirements.txt` to install all modules.
 
 3) There are certain packages left out of the requirements, specifically `torch`, `torchvision`, `torchaudio`, and `faster-whisper` for customization on whether you want GPU or CPU power for Whisper. So, install them with `pip install faster-whisper torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121` (This is a GPU based version of torch, which is used in the script for Whisper by default. If you wish to use it with CPU power, replace `from faster_whisper import WhisperModel` in whisper_speech_to_text.py with
 ```python
